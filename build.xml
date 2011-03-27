@@ -1,0 +1,30 @@
+<project>
+  <path id="classpath">
+        <fileset dir="/usr/lib/jvm/java-6-sun/lib/" includes="**/*.jar"/>
+        <fileset dir="/usr/local/hadoop/" includes="**/*.jar"/>
+        <fileset dir="/usr/local/hadoop/lib/" includes="**/*.jar"/>
+        <fileset dir="/usr/local/hbase/" includes="**/*.jar"/>
+        <fileset dir="/usr/local/hbase/lib" includes="**/*.jar"/>
+    </path>
+
+
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+
+    <target name="compile">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="stylewok" destdir="build/classes" classpathref="classpath" />
+    </target>
+
+    <target name="jar">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/stylewok.jar" basedir="build/classes">
+        </jar>
+    </target>
+
+    <target name="run">
+        <java jar="build/jar/HelloWorld.jar" fork="true"/>
+    </target>
+
+</project>
